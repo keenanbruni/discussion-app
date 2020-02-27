@@ -25,9 +25,9 @@ class AddComment extends React.Component {
     render() {
       return (
         <div>
-          {this.state.error && <p className="add-option-error">{this.state.error}</p>}
+          {this.state.error && <p className="add-comment-error">{this.state.error}</p>}
           <form className="add-comment" onSubmit={this.handleAddComment}>
-            <input className="add-option__input" type="text" name="comment" />
+            <input className="add-comment__input" type="text" name="comment" />
             <button className="button">Add Comment</button>
           </form>
         </div>

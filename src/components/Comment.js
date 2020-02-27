@@ -1,25 +1,45 @@
 import React from 'react'
 
-const Comment = (props) => (
-    <div className="comment">
-        <p className="comment__text">{props.count}. {props.commentText}</p>     
-        <button 
-            className="button button--link"   
-            onClick={(e) => {
-                props.handleDeleteComment(props.id)
-            }}
-        >
-            Remove Comment
-        </button>
-        <button 
-            className="button button--link"
-            onClick={(e) => {
-                props.handleReportSpam(props.id)
-            }}
-        >
-            Report Spam
-        </button>
-    </div>
-)
+class Comment extends React.Component {
+    state = {
+        isSpam: false
+    }
+
+    handleReportSpam = (e) => {
+        this.setState((prevState) => ({
+            isSpam: !prevState.isSpam
+        }))
+        console.log(this.state)
+    }
+
+    render () {
+        return (
+            <div className="comment">
+                {this.state.isSpam ? 
+                    <p className="comment__text--spam">{this.props.count}. {this.props.commentText}</p> :
+                    <p className="comment__text">{this.props.count}. {this.props.commentText}</p>
+                }    
+                <div className="comment__buttons">
+                    <button 
+                        className="button button--link"   
+                        onClick={(e) => {
+                            this.props.handleDeleteComment(this.props.id)
+                        }}
+                    >
+                        Remove Comment
+                    </button>
+                    <button 
+                        className="button button--link"
+                        onClick={(e) => {
+                            this.handleReportSpam()
+                        }}
+                    >
+                        Report Spam
+                    </button>
+                </div>
+        </div>
+        )
+    }
+}
 
 export default Comment

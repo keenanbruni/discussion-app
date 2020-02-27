@@ -6,7 +6,9 @@
   }
   
 .header__container {
-    display: inline-flex;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     padding: $s-size;
 }
 

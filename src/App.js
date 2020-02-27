@@ -1,4 +1,5 @@
 import React from 'react';
+import shortid from 'shortid'
 import './styles/App.scss';
 import Header from './components/Header'
 import Comments from './components/Comments'
@@ -9,9 +10,9 @@ class App extends React.Component {
     comments: []
   }
 
-  handleDeleteComment = (commentIdToRemove) => {
+  handleDeleteComment = (id) => {
     this.setState((prevState) => ({
-      comments: prevState.comments.filter((comment) => commentIdToRemove !== comment.id)
+      comments: prevState.comments.filter((comment) => id !== comment.id)
     }));
   };
   handleAddComment = (comment) => {
@@ -22,9 +23,6 @@ class App extends React.Component {
       comments: prevState.comments.concat(comment)
     }));
   };
-  handleReportSpam = (id) => {
-    console.log(id)
-  }
   componentDidMount() {
     try {
       const json = localStorage.getItem('comments');
@@ -36,11 +34,23 @@ class App extends React.Component {
     } catch (e) {
       // Do nothing
     }
+
+    // Generate Random Comment
+    setInterval(() => {
+      const things = ['Rock', 'Paper', 'Scissor'];
+      const thing = things[Math.floor(Math.random()*things.length)];
+      const comment = {
+        id: shortid(),
+        commentText: thing
+      }
+      this.handleAddComment(comment)
+    }, 30000);
   }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.comments.length !== this.state.comments.length) {
       const json = JSON.stringify(this.state.comments);
       localStorage.setItem('comments', json);
+      this.setState(() => json)
     }
   }
 
@@ -51,7 +61,7 @@ class App extends React.Component {
         <Comments
           comments={this.state.comments}
           handleDeleteComment={this.handleDeleteComment}
-          handleReportSpam={this.handleReportSpam}
+          generateRandomComment={this.generateRandomComment}
         />
         <AddComment 
           handleAddComment={this.handleAddComment}
