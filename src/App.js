@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid'
+import Sentencer from 'sentencer'
 import './styles/App.scss';
 import Header from './components/Header'
 import Comments from './components/Comments'
@@ -19,8 +20,10 @@ class App extends React.Component {
     if (!comment.commentText) {
       return 'Enter valid value to add comment';
     } 
-    this.setState((prevState) => ({
-      comments: prevState.comments.concat(comment)
+    const allComments = this.state.comments
+    const newComments = [comment].concat(allComments)
+    this.setState(() => ({
+      comments: newComments
     }));
   };
   componentDidMount() {
@@ -37,11 +40,9 @@ class App extends React.Component {
 
     // Generate Random Comment
     setInterval(() => {
-      const things = ['Rock', 'Paper', 'Scissor'];
-      const thing = things[Math.floor(Math.random()*things.length)];
       const comment = {
         id: shortid(),
-        commentText: thing
+        commentText: Sentencer.make("This random sentence has {{ a_noun }} and {{ an_adjective }} {{ noun }} in it.")
       }
       this.handleAddComment(comment)
     }, 30000);
@@ -61,7 +62,6 @@ class App extends React.Component {
         <Comments
           comments={this.state.comments}
           handleDeleteComment={this.handleDeleteComment}
-          generateRandomComment={this.generateRandomComment}
         />
         <AddComment 
           handleAddComment={this.handleAddComment}

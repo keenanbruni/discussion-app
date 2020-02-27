@@ -1,15 +1,12 @@
 import React from 'react'
 import Comment from './Comment' 
+import moment from 'moment'
 
 const Comments = (props) => (
     <div>
         <div className="widget-header">
             <h3 className="widget-header__title">Comments</h3>
         </div>
-
-        {/* {setInterval(() => {
-            props.generateRandomComment()
-        }, 1000)} */}
 
         {
             props.comments.map((comment, index) => (
@@ -18,8 +15,8 @@ const Comments = (props) => (
                     id={comment.id}
                     commentText={comment.commentText}
                     count={index + 1}
+                    timestamp={moment().format("hh:mm:ssa")}
                     handleDeleteComment={props.handleDeleteComment}
-                    handleReportSpam={props.handleReportSpam}
                 />
             ))
         }

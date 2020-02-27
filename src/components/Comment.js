@@ -16,8 +16,8 @@ class Comment extends React.Component {
         return (
             <div className="comment">
                 {this.state.isSpam ? 
-                    <p className="comment__text--spam">{this.props.count}. {this.props.commentText}</p> :
-                    <p className="comment__text">{this.props.count}. {this.props.commentText}</p>
+                    <p className="comment__text--spam">{this.props.timestamp}: {this.props.commentText}</p> :
+                    <p className="comment__text">{this.props.timestamp}: {this.props.commentText}</p>
                 }    
                 <div className="comment__buttons">
                     <button 

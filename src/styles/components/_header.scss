@@ -21,4 +21,10 @@
     align-content: center;
     padding: $m-size;
   }
+
+  @media screen and (max-width: 600px) {
+    .header__image {
+      width: 50%;
+    }
+  }
   
