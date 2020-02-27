@@ -1,0 +1,22 @@
+.header {
+    background: $off-black;
+    color: white;
+    margin-bottom: $m-size;
+    padding: $m-size 0;
+  }
+  
+.header__container {
+    display: inline-flex;
+    padding: $s-size;
+}
+
+  .header__title {
+    font-size: $l-size;
+    margin: 0;
+  }
+
+  .header__image {
+    align-content: center;
+    padding: $m-size;
+  }
+  
