@@ -1,4 +1,4 @@
-[Live Site](discussion-app.netlify.com)
+[Live Site](https://discussion-app.netlify.com/)
 
 Simple discussion app that utilizes local storage to save comments from anonymous users. Features error handling, the ability to remove comments, and the ability to report comments as spam. Utilizes a React front end. Utilizes scss for styles structuring.
 
