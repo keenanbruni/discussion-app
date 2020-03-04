@@ -1,6 +1,5 @@
 import React from 'react'
 import Comment from './Comment' 
-import moment from 'moment'
 
 const Comments = (props) => (
     <div>
@@ -15,7 +14,7 @@ const Comments = (props) => (
                     id={comment.id}
                     commentText={comment.commentText}
                     count={index + 1}
-                    timestamp={moment().format("hh:mm:ssa")}
+                    timestamp={comment.timestamp}
                     handleDeleteComment={props.handleDeleteComment}
                 />
             ))

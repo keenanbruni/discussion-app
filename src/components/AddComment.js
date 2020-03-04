@@ -1,5 +1,6 @@
 import React from 'react'
 import shortid from 'shortid'
+import moment from 'moment'
 
 
 class AddComment extends React.Component {
@@ -11,7 +12,8 @@ class AddComment extends React.Component {
       e.preventDefault();
       const comment = {
         id: shortid(),
-        commentText: e.target.elements.comment.value.trim()
+        commentText: e.target.elements.comment.value.trim(),
+        timestamp: moment().format("hh:mm:ssa")
       }
       const error = this.props.handleAddComment(comment);
   

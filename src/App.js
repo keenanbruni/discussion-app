@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid'
+import moment from 'moment'
 import Sentencer from 'sentencer'
 import './styles/App.scss';
 import Header from './components/Header'
@@ -42,7 +43,8 @@ class App extends React.Component {
     setInterval(() => {
       const comment = {
         id: shortid(),
-        commentText: Sentencer.make("This random sentence has {{ a_noun }} and {{ an_adjective }} {{ noun }} in it.")
+        commentText: Sentencer.make("This random sentence has {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."),
+        timestamp: moment().format("hh:mm:ssa")
       }
       this.handleAddComment(comment)
     }, 30000);
